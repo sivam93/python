@@ -39,7 +39,7 @@ def hello_user(name):
       return redirect(url_for('hello_guest',guest = name))
 
 if __name__ == '__main__':
-   app.run(debug = True)
+   app.run()
 
 
 
