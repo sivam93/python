@@ -1,13 +1,10 @@
 from flask import Flask, redirect, url_for,render_template,request
 import time
-import database
 app = Flask(__name__)
 
 dict = {'AA001': 'AA001', 'AA002': 'AA002'}
 @app.route('/admin')
 def hello_admin():
-   res= database.databases()
-   print(res)
    return 'Hello Admin'
 
 @app.route('/guest/<guest>')
