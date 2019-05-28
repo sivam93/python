@@ -1,5 +1,6 @@
 from flask import Flask, redirect, url_for,render_template,request
 import time
+import os
 app = Flask(__name__)
 
 dict = {'AA001': 'AA001', 'AA002': 'AA002'}
@@ -38,8 +39,13 @@ def hello_user(name):
    else:
       return redirect(url_for('hello_guest',guest = name))
 
+@app.route('/')
+def hello():
+    return 'Hello World!'
+
 if __name__ == '__main__':
-   app.run()
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port)
 
 
 
