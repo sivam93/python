@@ -59,8 +59,13 @@ def newpassowrd():
      
 
 @app.route('/')
+<<<<<<< HEAD
 def hello():   
     return operations.forgotpassword
+=======
+def hello():
+    return "<h1>Home</h1>"
+>>>>>>> cc3441aa92957b64fd04bc0105829cd9dda78d28
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
