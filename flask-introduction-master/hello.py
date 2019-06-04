@@ -41,7 +41,7 @@ def hello_user(name):
 
 @app.route('/')
 def hello():
-    return 'Hello World!'
+    return "<h1>Home</h1>"
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
