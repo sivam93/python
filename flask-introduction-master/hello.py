@@ -1,7 +1,10 @@
 from flask import Flask, redirect, url_for,render_template,request
 import time
 import os
+import operations
 app = Flask(__name__)
+
+
 
 dict = {'AA001': 'AA001', 'AA002': 'AA002'}
 @app.route('/admin')
@@ -16,6 +19,11 @@ def hello_guest(guest):
 def login():
     return render_template('/index.html')
 
+@app.route('/forgotpassword')
+def forgotpassword():
+    print('1')
+    return render_template('/forgotpassword.html',output = "hide")
+
 @app.route('/loginCred', methods = ['POST'])
 def loginCred():
     user=request.form['userName']
@@ -24,7 +32,7 @@ def loginCred():
     if user in dict:
         if (dict.get(user)==password):
            
-           return render_template('/nextpage.html', output ='Login SuccessFul')
+           return render_template('/newpage.html', output ='Login SuccessFul')
          
         else:
              return render_template('/index.html', output ='Wrong Passoword')
@@ -39,9 +47,20 @@ def hello_user(name):
    else:
       return redirect(url_for('hello_guest',guest = name))
 
+@app.route('/usercheck', methods = ['POST'])
+def newpassowrd():
+     user=request.form['userName']
+     print('userss')
+     if(operations.operations(dict,user)):
+       print('usersss34')
+       return render_template('forgotpassword.html', output = "show")
+     else:
+       return render_template('forgotpassword.html', output = "hide")
+     
+
 @app.route('/')
-def hello():
-    return 'Hello World!'
+def hello():   
+    return operations.forgotpassword
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
